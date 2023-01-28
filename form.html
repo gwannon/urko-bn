@@ -1,0 +1,46 @@
+<script
+  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous"></script>
+<form>
+    <input type="url" name="image_url" placeholder="URL imagen" style="width: 100%;" />
+    <button>Editar</button>
+<form>
+<div><img src="" /></div>
+<script>
+var coords = [];
+jQuery("button").click(function(e) {
+    e.preventDefault();
+    coords = [];
+    var url = "/urko-bn/image.php?image_url="+jQuery("input[name=image_url]").val();
+    jQuery("img").attr("src", url);
+});
+jQuery("img").click(function(e) {
+    console.log("Click");
+    var offset = jQuery(this).offset();
+    var size = 10;
+    var x  = ((e.pageX - offset.left) * 100 / jQuery(this).width()) - (size / 2);
+    var y = ((e.pageY - offset.top) * 100 / jQuery(this).height()) - (size / 2);
+    coords.push({
+        "x": x,
+        "y": y,
+        "width": size,
+        "height": size,
+    });
+    var url = "/urko-bn/image.php?image_url="+jQuery("input[name=image_url]").val();
+    coords.forEach(function(item, index) {
+        url = url + "&zone["+index+"][x]="+item['x'];
+        url = url + "&zone["+index+"][y]="+item['y'];
+        url = url + "&zone["+index+"][width]="+item['width'];
+        url = url + "&zone["+index+"][height]="+item['height'];
+    });
+    jQuery("img").attr("src", url);
+});
+</script>
+<style>
+img {
+   width: 100%;
+    max-width: 800px;
+    cursor: pointer;
+}
+</style>

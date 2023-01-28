@@ -1,6 +1,6 @@
 <?php 
 
-ini_set("display_errors", 1);
+ini_set("display_errors", 0);
 
 $imagen_url = $_GET['image_url'];
 
@@ -16,6 +16,7 @@ $orig = imagecreatefromjpeg($imagen_url);
 
 //Ponemos en B/N
 imagefilter($imagen, IMG_FILTER_GRAYSCALE);
+imagefilter($imagen, IMG_FILTER_CONTRAST, -50);
 
 
 list($width, $height) = getimagesize($imagen_url);
