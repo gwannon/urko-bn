@@ -25,7 +25,7 @@ jQuery("img").click(function(e) {
         "x": x,
         "y": y,
         "width": size,
-        "height": size,
+        "height": size * (jQuery(this).width() / jQuery(this).height()),
     });
     var url = "/urko-bn/image.php?image_url="+jQuery("input[name=image_url]").val();
     coords.forEach(function(item, index) {

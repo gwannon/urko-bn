@@ -29,7 +29,6 @@ foreach ($_REQUEST['zone'] as $zone) {
 
     $zone = imagecrop($orig, ['x' => ($zoneX * $width), 'y' => ($zoneY * $height), 'width' => ($zoneWidth * $width), 'height' => ($zoneHeight * $height)]);
 
-
     imagecopy(
         $imagen,
         $zone,
