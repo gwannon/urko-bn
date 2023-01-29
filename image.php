@@ -22,12 +22,11 @@ imagefilter($imagen, IMG_FILTER_CONTRAST, -50);
 list($width, $height) = getimagesize($imagen_url);
 
 foreach ($_REQUEST['zone'] as $zone) {
-    $zoneWidth = $zone['width'] / 100;
-    $zoneHeight = $zone['height'] / 100;
+    $zoneSize = $zone['size'] / 100;
     $zoneX = $zone['x'] / 100;
     $zoneY = $zone['y'] / 100;
 
-    $zone = imagecrop($orig, ['x' => ($zoneX * $width), 'y' => ($zoneY * $height), 'width' => ($zoneWidth * $width), 'height' => ($zoneHeight * $height)]);
+    $zone = imagecrop($orig, ['x' => ($zoneX * $width), 'y' => ($zoneY * $height), 'width' => ($zoneSize * $width), 'height' => ($zoneSize * $width)]);
 
     imagecopy(
         $imagen,
@@ -36,8 +35,8 @@ foreach ($_REQUEST['zone'] as $zone) {
         ($zoneY * $height),
         0,
         0,
-        ($zoneWidth * $width),
-        ($zoneHeight * $height)
+        ($zoneSize * $width),
+        ($zoneSize * $width)
     );
 }
 

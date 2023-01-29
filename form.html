@@ -16,31 +16,31 @@ jQuery("button").click(function(e) {
     jQuery("img").attr("src", url);
 });
 jQuery("img").click(function(e) {
-    console.log("Click");
-    var offset = jQuery(this).offset();
-    var size = 10;
-    var x  = ((e.pageX - offset.left) * 100 / jQuery(this).width()) - (size / 2);
-    var y = ((e.pageY - offset.top) * 100 / jQuery(this).height()) - (size / 2);
+    let offset = jQuery(this).offset();
+    let size = 10;
+    let x  = ((e.pageX - offset.left) * 100 / jQuery(this).width()) - (size / 2);
+    let y = ((e.pageY - offset.top) * 100 / jQuery(this).height()) - (size / 2);
     coords.push({
         "x": x,
         "y": y,
-        "width": size,
-        "height": size * (jQuery(this).width() / jQuery(this).height()),
+        "size": size,
     });
     var url = "/urko-bn/image.php?image_url="+jQuery("input[name=image_url]").val();
     coords.forEach(function(item, index) {
         url = url + "&zone["+index+"][x]="+item['x'];
         url = url + "&zone["+index+"][y]="+item['y'];
-        url = url + "&zone["+index+"][width]="+item['width'];
-        url = url + "&zone["+index+"][height]="+item['height'];
+        url = url + "&zone["+index+"][size]="+item['size'];
     });
     jQuery("img").attr("src", url);
 });
 </script>
 <style>
+body {
+	margin: 0;
+	padding: 0;
+}
 img {
    width: 100%;
     max-width: 800px;
-    cursor: pointer;
 }
 </style>
